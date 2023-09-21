@@ -1,4 +1,4 @@
-package br.com.sennatech.wasddoquotation.domain.dto;
+package br.com.sennatech.wasddoquotation.domain;
 
 import java.math.BigDecimal;
 

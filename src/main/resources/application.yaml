@@ -13,6 +13,6 @@ spring:
       properties:
         spring.json:
           use.type.headers: false
-          value.default.type: br.com.sennatech.wasddoquotation.integration.SimpleMessage
+          value.default.type: br.com.sennatech.wasddoquotation.domain.dto.QuotationParametersDTO
 topic:
-  name: topico-sddo-emissao
+  name: topico-sddo-cotacao
