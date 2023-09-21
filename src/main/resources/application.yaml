@@ -13,6 +13,6 @@ spring:
       properties:
         spring.json:
           use.type.headers: false
-          value.default.type: br.com.sennatech.wasddoquotation.domain.dto.QuotationParametersDTO
+          value.default.type: br.com.sennatech.wasddoquotation.domain.dto.QuotationKafkaMessage
 topic:
   name: topico-sddo-cotacao
