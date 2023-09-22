@@ -1,6 +1,18 @@
 package br.com.sennatech.wasddoissuances.domain.dto;
 
-import java.util.List;
+import br.com.sennatech.wasddoissuances.domain.HolderObj;
+import br.com.sennatech.wasddoissuances.domain.InsuredAdress;
+import br.com.sennatech.wasddoissuances.domain.PolicyDomain;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record ResponseDTO (List<CoverageResource> coverages, String documentNumber, String paymentId, InsuredAddressDTO insuredAddress){
+import java.util.List;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ResponseDTO{
+    PolicyDomain policy;
+    HolderObj holder;
+    InsuredAdress insuredAdress;
 }

@@ -13,6 +13,6 @@ spring:
       properties:
         spring.json:
           use.type.headers: false
-          value.default.type: br.com.sennatech.wasddoissuances.integration.SimpleMessage
+          value.default.type: br.com.sennatech.wasddoissuances.integration.ResponseKafkaDTO
 topic:
   name: topico-sddo-emissao
