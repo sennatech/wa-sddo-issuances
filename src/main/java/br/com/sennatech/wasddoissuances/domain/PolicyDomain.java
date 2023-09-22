@@ -8,7 +8,7 @@ import java.util.List;
 public class PolicyDomain {
     Integer number ;
     ValidityObj validity;
-    BigDecimal value;
+    BigDecimal totalValue;
     List<Coverage> coverages;
 
 }
