@@ -7,12 +7,12 @@ spring:
       sasl.mechanism: PLAIN
       security.protocol: SASL_SSL
     producer:
-      value-serializer: br.com.sennatech.wasddoquotation.integration.ProducerMessageSerializer
+      value-serializer: br.com.sennatech.wasddoissuances.integration.ProducerMessageSerializer
     consumer:
       group-id: $Default
       properties:
         spring.json:
           use.type.headers: false
-          value.default.type: br.com.sennatech.wasddoquotation.integration.SimpleMessage
+          value.default.type: br.com.sennatech.wasddoissuances.integration.SimpleMessage
 topic:
   name: topico-sddo-emissao

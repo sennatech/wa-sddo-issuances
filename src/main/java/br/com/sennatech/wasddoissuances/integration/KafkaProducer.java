@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class KafkaProducer {
 
-    private final KafkaTemplate<String, SimpleMessage> kafkaTemplate;
+    private final KafkaTemplate<Object, ResponseKafkaDTO> kafkaTemplate;
 
     @Value("${topic.name}")
     private String topicName;
 
-    public void send(SimpleMessage message) {
+    public void send(ResponseKafkaDTO message) {
         this.kafkaTemplate.send(topicName, message);
         log.info("Published the value [{}], with quotation code: to the kafka queue: [{}]",
-                message.getBody(),
+                message.data,
                 topicName
         );
     }

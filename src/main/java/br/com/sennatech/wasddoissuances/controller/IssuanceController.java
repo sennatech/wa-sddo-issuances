@@ -6,12 +6,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+
+@RestController
 @RequestMapping("/issuances")
 public class IssuanceController {
     @PostMapping
-    public String issuance(@RequestBody RequestDTO dataDTO){
-        return  "foi";
+    public ResponseEntity<RequestDTO> issuance(@RequestBody RequestDTO dataDTO){
+
+        return  ResponseEntity.ok().body(dataDTO);
 
     }
 }
