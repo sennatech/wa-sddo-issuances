@@ -24,9 +24,11 @@ public class IssuanceController {
     @PostMapping
     public ResponseEntity<ResponseDTO> issuance(@RequestBody RequestDTO dataDTO){
         ResponseDTO responseDTO = new ResponseDTO();
-        responseDTO.setInsuredAdress(converter.convert(dataDTO.getInsuredAddress()));
+        var addressDTOConverted = converter.convert(dataDTO.getInsuredAddress());
+        responseDTO.setInsuredAdress(addressDTOConverted);
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         System.out.println(dataDTO.getInsuredAddress());
+        System.out.println(responseDTO.getInsuredAdress());
         DataKafka dataKafka = new DataKafka();
         dataKafka.setInsuredAdress(responseDTO.getInsuredAdress());
         ResponseKafkaDTO responseKafkaDTO = new ResponseKafkaDTO();

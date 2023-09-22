@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class DataKafka {
     PolicyDomain policy;
     HolderObj holder;
-    InsuredAdress insuredAdress;
+    InsuredAddress insuredAdress;
 }
