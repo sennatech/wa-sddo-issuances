@@ -13,5 +13,4 @@ import lombok.NoArgsConstructor;
 public class ResponseDTO{
     Policy policy;
     HolderObj holder;
-    InsuredAddress insuredAdress;
 }

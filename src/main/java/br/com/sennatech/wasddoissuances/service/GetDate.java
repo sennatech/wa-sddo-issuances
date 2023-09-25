@@ -15,11 +15,10 @@ public class GetDate {
         return LocalDateTime.now().toString();
     }
 
-    public void calculateDate(){
+    public String calculateDate(){
         LocalDateTime currentDate = LocalDateTime.now();
-        LocalDateTime calculatedDate = currentDate.plus(1, ChronoUnit.YEARS);
+        String calculatedDate = String.valueOf(currentDate.plus(1, ChronoUnit.YEARS));
 
-        validityDate.setStart(String.valueOf(currentDate));
-        validityDate.setEnd(String.valueOf(calculatedDate));
+        return calculatedDate;
     }
 }

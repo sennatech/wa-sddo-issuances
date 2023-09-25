@@ -28,10 +28,9 @@ public class IssuanceController {
     public ResponseEntity<ResponseDTO> issuance(@RequestBody RequestDTO dataDTO) {
         ResponseDTO responseDTO = new ResponseDTO();
         var addressDTOConverted = converter.convert(dataDTO.getInsuredAddress());
-        responseDTO.setInsuredAdress(addressDTOConverted);
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         System.out.println(dataDTO.getInsuredAddress());
-        System.out.println(responseDTO.getInsuredAdress());
+
         DataKafka dataKafka = new DataKafka();
         ResponseKafkaDTO responseKafkaDTO = new ResponseKafkaDTO();
         responseKafkaDTO.setTimestamp(date.getDate());

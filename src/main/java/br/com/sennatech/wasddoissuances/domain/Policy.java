@@ -1,13 +1,12 @@
 package br.com.sennatech.wasddoissuances.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Policy {
     Integer number ;
     Validity validity;

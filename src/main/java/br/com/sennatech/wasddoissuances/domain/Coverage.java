@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 @Data
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class Coverage {
     Integer code;
     String type;
