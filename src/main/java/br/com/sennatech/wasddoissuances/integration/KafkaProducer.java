@@ -1,5 +1,6 @@
 package br.com.sennatech.wasddoissuances.integration;
 
+import br.com.sennatech.wasddoissuances.domain.DataKafka;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

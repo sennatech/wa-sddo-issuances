@@ -1,8 +1,11 @@
 package br.com.sennatech.wasddoissuances.domain;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 public class HolderObj {
     String documentNumber = "11111111111";
     String        name = "José do Teste";

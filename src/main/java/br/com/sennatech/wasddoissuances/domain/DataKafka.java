@@ -1,14 +1,10 @@
 package br.com.sennatech.wasddoissuances.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class DataKafka {
     Policy policy;
     HolderObj holder;
-    InsuredAddress insuredAdress;
 }

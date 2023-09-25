@@ -1,6 +1,19 @@
 package br.com.sennatech.wasddoissuances.domain;
 
-import java.math.BigDecimal;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-public record Coverage(Integer code, String type, String name, String description, BigDecimal value, BigDecimal sumInsured, boolean required) {
+import java.math.BigDecimal;
+@Data
+@RequiredArgsConstructor
+public class Coverage {
+    Integer code;
+    String type;
+    String name;
+    String description;
+    BigDecimal value;
+    BigDecimal sumInsured;
+    boolean required;
 }

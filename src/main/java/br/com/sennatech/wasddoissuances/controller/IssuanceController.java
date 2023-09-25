@@ -3,6 +3,7 @@ package br.com.sennatech.wasddoissuances.controller;
 import br.com.sennatech.wasddoissuances.domain.DataKafka;
 import br.com.sennatech.wasddoissuances.controller.dto.RequestDTO;
 import br.com.sennatech.wasddoissuances.controller.dto.ResponseDTO;
+import br.com.sennatech.wasddoissuances.domain.HolderObj;
 import br.com.sennatech.wasddoissuances.integration.KafkaProducer;
 import br.com.sennatech.wasddoissuances.integration.ResponseKafkaDTO;
 import br.com.sennatech.wasddoissuances.service.GetDate;
@@ -22,8 +23,9 @@ public class IssuanceController {
     private final KafkaProducer kafkaProducer;
     private final ConvertISAddressResourceToISAddress converter;
     private final GetDate date;
+
     @PostMapping
-    public ResponseEntity<ResponseDTO> issuance(@RequestBody RequestDTO dataDTO){
+    public ResponseEntity<ResponseDTO> issuance(@RequestBody RequestDTO dataDTO) {
         ResponseDTO responseDTO = new ResponseDTO();
         var addressDTOConverted = converter.convert(dataDTO.getInsuredAddress());
         responseDTO.setInsuredAdress(addressDTOConverted);
@@ -31,13 +33,12 @@ public class IssuanceController {
         System.out.println(dataDTO.getInsuredAddress());
         System.out.println(responseDTO.getInsuredAdress());
         DataKafka dataKafka = new DataKafka();
-        dataKafka.setInsuredAdress(responseDTO.getInsuredAdress());
         ResponseKafkaDTO responseKafkaDTO = new ResponseKafkaDTO();
         responseKafkaDTO.setTimestamp(date.getDate());
         responseKafkaDTO.setData(dataKafka);
         date.calculateDate();
         kafkaProducer.send(responseKafkaDTO);
-        return  ResponseEntity.ok().body(responseDTO);
+        return ResponseEntity.ok().body(responseDTO);
 
     }
 }
