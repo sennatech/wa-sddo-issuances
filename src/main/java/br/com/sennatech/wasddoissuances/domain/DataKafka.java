@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DataKafka {
-    PolicyDomain policy;
+    Policy policy;
     HolderObj holder;
     InsuredAddress insuredAdress;
 }

@@ -1,4 +1,4 @@
-package br.com.sennatech.wasddoissuances.domain.dto;
+package br.com.sennatech.wasddoissuances.controller.dto;
 
 import java.math.BigDecimal;
 

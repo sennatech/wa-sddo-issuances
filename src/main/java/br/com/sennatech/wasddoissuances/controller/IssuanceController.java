@@ -1,8 +1,8 @@
 package br.com.sennatech.wasddoissuances.controller;
 
 import br.com.sennatech.wasddoissuances.domain.DataKafka;
-import br.com.sennatech.wasddoissuances.domain.dto.RequestDTO;
-import br.com.sennatech.wasddoissuances.domain.dto.ResponseDTO;
+import br.com.sennatech.wasddoissuances.controller.dto.RequestDTO;
+import br.com.sennatech.wasddoissuances.controller.dto.ResponseDTO;
 import br.com.sennatech.wasddoissuances.integration.KafkaProducer;
 import br.com.sennatech.wasddoissuances.integration.ResponseKafkaDTO;
 import br.com.sennatech.wasddoissuances.service.GetDate;
@@ -35,6 +35,7 @@ public class IssuanceController {
         ResponseKafkaDTO responseKafkaDTO = new ResponseKafkaDTO();
         responseKafkaDTO.setTimestamp(date.getDate());
         responseKafkaDTO.setData(dataKafka);
+        date.calculateDate();
         kafkaProducer.send(responseKafkaDTO);
         return  ResponseEntity.ok().body(responseDTO);
 

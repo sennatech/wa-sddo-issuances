@@ -1,8 +1,8 @@
-package br.com.sennatech.wasddoissuances.domain.dto;
+package br.com.sennatech.wasddoissuances.controller.dto;
 
 import br.com.sennatech.wasddoissuances.domain.HolderObj;
 import br.com.sennatech.wasddoissuances.domain.InsuredAddress;
-import br.com.sennatech.wasddoissuances.domain.PolicyDomain;
+import br.com.sennatech.wasddoissuances.domain.Policy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseDTO{
-    PolicyDomain policy;
+    Policy policy;
     HolderObj holder;
     InsuredAddress insuredAdress;
 }

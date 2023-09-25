@@ -1,8 +1,6 @@
-package br.com.sennatech.wasddoissuances.domain.dto;
+package br.com.sennatech.wasddoissuances.controller.dto;
 
-import br.com.sennatech.wasddoissuances.domain.InsuredAddress;
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.List;
 

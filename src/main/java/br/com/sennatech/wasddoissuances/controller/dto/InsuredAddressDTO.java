@@ -1,4 +1,4 @@
-package br.com.sennatech.wasddoissuances.domain.dto;
+package br.com.sennatech.wasddoissuances.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
