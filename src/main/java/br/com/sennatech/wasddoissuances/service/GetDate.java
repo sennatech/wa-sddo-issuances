@@ -3,6 +3,7 @@ package br.com.sennatech.wasddoissuances.service;
 import br.com.sennatech.wasddoissuances.domain.Validity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -12,13 +13,12 @@ public class GetDate {
 
     public String getDate(){
 
-        return LocalDateTime.now().toString();
+        return LocalDate.now().toString();
     }
 
     public String calculateDate(){
-        LocalDateTime currentDate = LocalDateTime.now();
-        String calculatedDate = String.valueOf(currentDate.plus(1, ChronoUnit.YEARS));
+        LocalDate currentDate = LocalDate.now();
 
-        return calculatedDate;
+        return String.valueOf(currentDate.plus(1, ChronoUnit.YEARS));
     }
 }

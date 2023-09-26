@@ -16,3 +16,5 @@ spring:
           value.default.type: br.com.sennatech.wasddoissuances.integration.ResponseKafkaDTO
 topic:
   name: topico-sddo-emissao
+feignclient.url:
+  https://fa-dev-sddo-customers.azurewebsites.net/api/customers

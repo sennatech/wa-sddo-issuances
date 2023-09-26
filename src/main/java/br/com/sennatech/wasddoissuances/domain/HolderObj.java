@@ -7,14 +7,15 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class HolderObj {
-    String documentNumber = "11111111111";
-    String        name = "José do Teste";
-    String        birthdate = "1992-01-01";
-    String        gender = "M";
-    String        email = "joao.teste@teste.com.br";
-    String        areaCode = "11";
-    String       phone = "912341234";
-    Address   address;
+    String documentNumber;
+    String name;
+    String birthdate;
+    String gender;
+    String login;
+    String email;
+    String areaCode;
+    String phone;
+    Address address;
 
 }
 //{
@@ -36,3 +37,4 @@ public class HolderObj {
 //        "zipCode": "12345123"
 //        }
 //        }
+

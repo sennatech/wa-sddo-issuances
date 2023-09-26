@@ -12,6 +12,4 @@ public class Policy {
     Validity validity;
     BigDecimal totalValue;
     List<Coverage> coverages;
-    InsuredAddress insuredAdress;
-
 }
