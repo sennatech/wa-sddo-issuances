@@ -1,10 +1,8 @@
 package br.com.sennatech.wasddoissuances.service;
 
 import br.com.sennatech.wasddoissuances.controller.dto.request.IssuanceRequestDTO;
-import br.com.sennatech.wasddoissuances.controller.dto.response.IssuanceResponseDTO;
-import br.com.sennatech.wasddoissuances.domain.FinalIssuance;
-import br.com.sennatech.wasddoissuances.service.converters.ConvertISAddressDTOToISAddress;
-import br.com.sennatech.wasddoissuances.service.integration.GetCustumerIntegration;
+import br.com.sennatech.wasddoissuances.domain.Issuance;
+import br.com.sennatech.wasddoissuances.service.converters.ConvertInsuredAddressDTOToInsuredAddress;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +11,19 @@ import org.springframework.stereotype.Service;
 public class IssuanceBusinessRulesService {
 
     private final GetCustumerByDocNumber getCustumerIntegration;
-    private final PolicyInitializer policyInitializer;
-    private final ConvertISAddressDTOToISAddress convertISAddressDTOToISAddress;
+    private final GetPolicy getPolicy;
+    private final ConvertInsuredAddressDTOToInsuredAddress converterConvertInsuredAddressDTOToInsuredAddress;
 
-    public FinalIssuance execute(IssuanceRequestDTO request){
-        final var getPolicy = policyInitializer.getPolicy(request);
-        final var getHolder = getCustumerIntegration.execute(request);
-        FinalIssuance finalIssuance = new FinalIssuance(getPolicy,getHolder,convertISAddressDTOToISAddress.convert(request.insuredAddress()));
+    public Issuance execute(IssuanceRequestDTO request){
+        final var issuance = Issuance
+                .builder()
+                .holder(getCustumerIntegration.execute(request))
+                .policy(getPolicy.execute(request))
+                .insuredAddress(converterConvertInsuredAddressDTOToInsuredAddress.convert(request.getInsuredAddress()))
+                .build();
 
-        System.out.println(getHolder);
-        return finalIssuance ;
+        System.out.println(issuance);
+
+        return issuance;
     }
 }

@@ -1,7 +1,13 @@
 package br.com.sennatech.wasddoissuances.controller.dto.response;
 
-public record ValidityResponseDTO(
-        String start,
-        String end
-) {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ValidityResponseDTO {
+        String start;
+        String end;
 }
