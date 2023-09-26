@@ -8,5 +8,4 @@ import lombok.*;
 public class Validity {
     String start ;
     String end;
-
 }
