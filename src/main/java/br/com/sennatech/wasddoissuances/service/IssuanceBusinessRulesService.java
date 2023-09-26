@@ -12,14 +12,14 @@ public class IssuanceBusinessRulesService {
 
     private final GetCustumerByDocNumber getCustumerIntegration;
     private final GetPolicy getPolicy;
-    private final ConvertInsuredAddressDTOToInsuredAddress converterConvertInsuredAddressDTOToInsuredAddress;
+    private final ConvertInsuredAddressDTOToInsuredAddress convertInsuredAddressDTOToInsuredAddress;
 
     public Issuance execute(IssuanceRequestDTO request){
         final var issuance = Issuance
                 .builder()
                 .holder(getCustumerIntegration.execute(request))
                 .policy(getPolicy.execute(request))
-                .insuredAddress(converterConvertInsuredAddressDTOToInsuredAddress.convert(request.getInsuredAddress()))
+                .insuredAddress(convertInsuredAddressDTOToInsuredAddress.convert(request.getInsuredAddress()))
                 .build();
 
         System.out.println(issuance);
