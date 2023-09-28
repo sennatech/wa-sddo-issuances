@@ -1,11 +1,12 @@
 package br.com.sennatech.wasddoissuances.controller.dto.response;
 
-import br.com.sennatech.wasddoissuances.domain.Address;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class HolderResponseDTO {
@@ -16,5 +17,5 @@ public class HolderResponseDTO {
     String email;
     String areaCode;
     String phone;
-    Address address;
+    AddressDTO address;
 }

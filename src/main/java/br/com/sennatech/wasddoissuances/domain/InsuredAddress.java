@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InsuredAddress {
-    String street;
-    String number;
-    String district;
-    String city;
-    String state;
-    String country;
-    String zipcode;
+    private String street;
+    private String number;
+    private String district;
+    private String city;
+    private String state;
+    private String country;
+    private String zipcode;
 }

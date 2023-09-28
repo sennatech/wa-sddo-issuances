@@ -1,8 +1,8 @@
 package br.com.sennatech.wasddoissuances.service;
 
 import br.com.sennatech.wasddoissuances.controller.dto.request.IssuanceRequestDTO;
-import br.com.sennatech.wasddoissuances.domain.Issuance;
-import br.com.sennatech.wasddoissuances.service.converters.ConvertInsuredAddressDTOToInsuredAddress;
+import br.com.sennatech.wasddoissuances.controller.dto.response.IssuanceResponseDTO;
+import br.com.sennatech.wasddoissuances.integration.kafka.KafkaProducer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,20 +10,18 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class IssuanceBusinessRulesService {
 
-    private final GetCustumerByDocNumber getCustumerIntegration;
-    private final GetPolicy getPolicy;
-    private final ConvertInsuredAddressDTOToInsuredAddress convertInsuredAddressDTOToInsuredAddress;
+    private final SavePolicyService savePolicyService;
+    private final GetIssuanceService getPolicy;
+    private final GetCustumerByDocumentNumberService getCustumerIntegration;
+    private final KafkaProducer kafkaProducer;
+    private final ConvertIssuanceToIssuanceResponseDTO convertIssuanceToIssuanceResponseDTO;
 
-    public Issuance execute(IssuanceRequestDTO request){
-        final var issuance = Issuance
-                .builder()
-                .holder(getCustumerIntegration.execute(request))
-                .policy(getPolicy.execute(request))
-                .insuredAddress(convertInsuredAddressDTOToInsuredAddress.convert(request.getInsuredAddress()))
-                .build();
-
-        System.out.println(issuance);
-
-        return issuance;
+    public IssuanceResponseDTO execute(IssuanceRequestDTO request){
+        final var policyDB = savePolicyService.execute(request);
+        final var holder = getCustumerIntegration.execute(request.getDocumentNumber());
+        final var issuance = getPolicy.execute(request, policyDB, holder);
+        kafkaProducer.send(issuance);
+        return convertIssuanceToIssuanceResponseDTO.execute(issuance);
     }
 }
+

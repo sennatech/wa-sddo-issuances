@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class Address {
-    String street;
-    String number;
-    String district;
-    String city;
-    String state;
-    String country;
-    String zipCode;
+    private String street;
+    private String number;
+    private String district;
+    private String city;
+    private String state;
+    private String country;
+    private String zipCode;
 }

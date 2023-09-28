@@ -1,12 +1,17 @@
 package br.com.sennatech.wasddoissuances.domain;
 
-import lombok.*;
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
 public class Validity {
-    String start ;
-    String end;
+    private String start ;
+    private String end;
 }

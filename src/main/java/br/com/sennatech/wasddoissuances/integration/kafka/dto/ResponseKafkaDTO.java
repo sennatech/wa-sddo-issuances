@@ -1,18 +1,19 @@
-package br.com.sennatech.wasddoissuances.integration;
+package br.com.sennatech.wasddoissuances.integration.kafka.dto;
 
-import br.com.sennatech.wasddoissuances.integration.dto.DataKafka;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseKafkaDTO {
-    String timestamp;
+    String timestamp = LocalDateTime.now().toString();
     String operation = "EMISSAO" ;
     String domain = "SEGURO";
     String origin = "SEGURATECH";
-    DataKafka data;
+    KafkaData data;
 }

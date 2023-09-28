@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Policy {
-    Integer number ;
-    Validity validity;
-    BigDecimal totalValue;
-    List<Coverage> coverages;
+    private Long number ;
+    private Validity validity;
+    private BigDecimal totalValue;
+    private List<Coverage> coverages;
 }

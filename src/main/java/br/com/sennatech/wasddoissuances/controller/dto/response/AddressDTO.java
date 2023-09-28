@@ -1,19 +1,14 @@
 package br.com.sennatech.wasddoissuances.controller.dto.response;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class AddressDTO {
-    String street;
-    String number;
-    String district;
-    String city;
-    String state;
-    String country;
-    String zipCode;
+    private String street;
+    private String number;
+    private String district;
+    private String city;
+    private String state;
+    private String country;
+    private String zipCode;
 }

@@ -9,20 +9,13 @@ import org.springframework.data.annotation.Transient;
 @Data
 @RequiredArgsConstructor
 public class Holder {
-    String documentNumber;
-    String name;
-    @Transient
-    String birthdate;
-    @Transient
-    String gender;
-    @Transient
-    String login;
-    @Transient
-    String email;
-    @Transient
-    String areaCode;
-    @Transient
-    String phone;
-    @Transient
-    Address address;
+    private String documentNumber;
+    private String name;
+    private String birthdate;
+    private String gender;
+    private String login;
+    private String email;
+    private String areaCode;
+    private String phone;
+    private Address address;
 }

@@ -1,4 +1,8 @@
+
+
 spring:
+  profiles:
+    active: dev
   kafka:
     bootstrap-servers: eh-sddo-backend.servicebus.windows.net:9093
     client-id: first-producer
@@ -7,13 +11,13 @@ spring:
       sasl.mechanism: PLAIN
       security.protocol: SASL_SSL
     producer:
-      value-serializer: br.com.sennatech.wasddoissuances.integration.ProducerMessageSerializer
+      value-serializer: br.com.sennatech.wasddoissuances.integration.kafka.ProducerMessageSerializer
     consumer:
       group-id: $Default
       properties:
         spring.json:
           use.type.headers: false
-          value.default.type: br.com.sennatech.wasddoissuances.integration.ResponseKafkaDTO
+          value.default.type: br.com.sennatech.wasddoissuances.integration.kafka.dto.ResponseKafkaDTO
 topic:
   name: topico-sddo-emissao
 feignclient.url:

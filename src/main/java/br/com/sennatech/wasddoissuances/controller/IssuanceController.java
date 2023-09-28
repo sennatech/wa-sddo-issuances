@@ -1,7 +1,7 @@
 package br.com.sennatech.wasddoissuances.controller;
 
 import br.com.sennatech.wasddoissuances.controller.dto.request.IssuanceRequestDTO;
-import br.com.sennatech.wasddoissuances.domain.Issuance;
+import br.com.sennatech.wasddoissuances.controller.dto.response.IssuanceResponseDTO;
 import br.com.sennatech.wasddoissuances.service.IssuanceBusinessRulesService;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class IssuanceController {
     private final IssuanceBusinessRulesService issuanceBusinessRulesService;
 
     @PostMapping
-    public ResponseEntity<Issuance> getIssuance(@RequestBody IssuanceRequestDTO request) {
+    public ResponseEntity<IssuanceResponseDTO> getIssuance(@RequestBody IssuanceRequestDTO request) {
         System.out.println("[POST][ISSUANCE] " + request);
         final var response = issuanceBusinessRulesService.execute(request);
         return ResponseEntity.ok().body(response);
