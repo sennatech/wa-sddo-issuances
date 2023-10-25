@@ -6,6 +6,7 @@ import br.com.sennatech.wasddoissuances.repository.PolicyRepository;
 import br.com.sennatech.wasddoissuances.service.PolicyDTOtoPolicyResponse;
 import br.com.sennatech.wasddoissuances.service.dto.PolicyDB;
 import br.com.sennatech.wasddoissuances.service.ConverterCoverageDBtoCustomCoverage;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,32 +17,29 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Data
 @RestController
 @RequestMapping("/policies")
 public class PoliciesController {
 
-    @Autowired
-    private  PolicyRepository policyRepository;
-    @Autowired
-    private  PolicyDTOtoPolicyResponse policyDTOtoPolicyResponse;
-    @Autowired
-    private ConverterCoverageDBtoCustomCoverage converter;
+    private final PolicyRepository policyRepository;
+    private final PolicyDTOtoPolicyResponse policyDTOtoPolicyResponse;
+    private final ConverterCoverageDBtoCustomCoverage converter;
 
-    @GetMapping("/{holderDocument}")
-
-    public ResponseEntity<List<PolicyDTO>>
-    getPoliciesByHolderDocument(@PathVariable String holderDocument) {
-        List<PolicyDB> policies = policyRepository.findByHolderDocument(holderDocument);
-        List<PolicyDTO> policyDTOs = policies.stream()
-                .map(policyDTOtoPolicyResponse::convertToDTO)
-                .collect(Collectors.toList());
-
-
-        System.out.println("[GET][POLICIES] " + policyDTOs);
-
-        return ResponseEntity.ok(policyDTOs);
-    }
+//    @GetMapping("/{holderDocument}")
+//
+//    public ResponseEntity<List<PolicyDTO>>
+//    getPoliciesByHolderDocument(@PathVariable String holderDocument) {
+//        List<PolicyDB> policies = policyRepository.findByHolderDocument(holderDocument);
+//        List<PolicyDTO> policyDTOs = policies.stream()
+//                .map(policyDTOtoPolicyResponse::convertToDTO)
+//                .collect(Collectors.toList());
+//
+//
+//        System.out.println("[GET][POLICIES] " + policyDTOs);
+//
+//        return ResponseEntity.ok(policyDTOs);
+//    }
 
     @GetMapping("details/{number}")
     public ResponseEntity<List<PolicyDetailsDTO>> getPoliciesByNumber(@PathVariable Long number) {
