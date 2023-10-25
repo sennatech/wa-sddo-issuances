@@ -1,4 +1,4 @@
-package br.com.sennatech.wasddoissuances.service;
+package br.com.sennatech.wasddoissuances.controller.dto;
 
 import br.com.sennatech.wasddoissuances.controller.dto.InsuredAddressDTO;
 import br.com.sennatech.wasddoissuances.controller.dto.response.CustomCoverage;
