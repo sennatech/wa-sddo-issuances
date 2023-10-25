@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name = "insured_")
+@Table(name = "insuredAddresses")
 @NoArgsConstructor
 @AllArgsConstructor
 public class InsuredAddressDB {
