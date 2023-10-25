@@ -23,4 +23,5 @@ public class IssuanceController {
         final var response = issuanceBusinessRulesService.execute(request);
         return ResponseEntity.ok().body(response);
     }
+
 }

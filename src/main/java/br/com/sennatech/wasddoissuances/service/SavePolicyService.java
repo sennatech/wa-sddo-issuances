@@ -26,7 +26,6 @@ public class SavePolicyService {
         final var policy = getPolicy(request);
         final var coverages = getCoverages(request, policy);
         final var insuredAddress = getInsuredAddress(request.getInsuredAddress(), policy);
-
         policy.setCoverages(coverages);
         policy.setInsuredAddress(insuredAddress);
 

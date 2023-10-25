@@ -16,7 +16,7 @@ public class KafkaProducer {
 
     private final KafkaTemplate<Object, ResponseKafkaDTO> kafkaTemplate;
 
-    @Value("${topic.name}")
+    @Value("${spring.kafka.topic.issuance.name}")
     private String topicName;
 
     public void send(Issuance issuance) {

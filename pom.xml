@@ -80,6 +80,11 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>azure-functions-maven-plugin</artifactId>
+			<version>1.28.0</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -103,6 +108,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
 	</build>
 
 </project>

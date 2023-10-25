@@ -1,5 +1,6 @@
-package br.com.sennatech.wasddoissuances.domain;
+package br.com.sennatech.wasddoissuances.controller.dto.response;
 
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,14 +9,12 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 @Data
 @Builder
+@Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
-public class Coverage {
-    private Integer code;
-    private String type;
+
+public class CustomCoverage {
+    private Long code;
     private String name;
-    private String description;
     private BigDecimal value;
-    private BigDecimal sumInsured;
-    private boolean required;
 }

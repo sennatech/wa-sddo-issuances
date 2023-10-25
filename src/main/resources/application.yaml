@@ -18,7 +18,9 @@ spring:
         spring.json:
           use.type.headers: false
           value.default.type: br.com.sennatech.wasddoissuances.integration.kafka.dto.ResponseKafkaDTO
-topic:
-  name: topico-sddo-emissao
+    topic:
+      issuance:
+        name: topico-sddo-emissao
+
 feignclient.url:
   https://fa-dev-sddo-customers.azurewebsites.net/api/customers

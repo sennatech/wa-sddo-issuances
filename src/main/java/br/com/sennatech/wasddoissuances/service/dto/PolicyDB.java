@@ -1,6 +1,7 @@
 package br.com.sennatech.wasddoissuances.service.dto;
 
-import br.com.sennatech.wasddoissuances.controller.dto.InsuredAddressDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,8 +26,12 @@ public class PolicyDB {
     private BigDecimal totalValue;
     private String holderDocument;
     private String paymentId;
+    @JsonIgnoreProperties("policy")
     @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<CoverageDB> coverages;
     @OneToOne(mappedBy = "policy", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private InsuredAddressDB insuredAddress;
+
 }
