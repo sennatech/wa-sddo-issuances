@@ -11,15 +11,15 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Payment {
+public class PaymentDB {
     @Id
-    @Column(nullable = false, updatable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, updatable = false, nullable = false)
     private Long id;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private LocalDateTime dateTime;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String transaction;
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal value;
+    private BigDecimal paymentValue;
+    @Column(nullable = false)
+    private LocalDateTime dateTime = LocalDateTime.now();
 }

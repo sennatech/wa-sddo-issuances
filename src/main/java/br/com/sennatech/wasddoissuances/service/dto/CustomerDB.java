@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class CustomerDB {
     @Id
     @Column(nullable = false, updatable = false, unique = true, length = 11)
     private String documentNumber;

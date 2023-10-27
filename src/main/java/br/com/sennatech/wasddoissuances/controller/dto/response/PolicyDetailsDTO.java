@@ -20,5 +20,5 @@ public class PolicyDetailsDTO {
     private String paymentId;
     private List<CustomCoverage> coverages;
     private Validity validity;
-    private List<InsuredAddressDB> insuredAddresses;
+    private InsuredAddressDB insuredAddresses;
 }

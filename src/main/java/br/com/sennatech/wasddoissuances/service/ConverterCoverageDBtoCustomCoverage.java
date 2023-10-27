@@ -1,14 +1,12 @@
 package br.com.sennatech.wasddoissuances.service;
 
-import br.com.sennatech.wasddoissuances.controller.dto.InsuredAddressDTO;
 import br.com.sennatech.wasddoissuances.controller.dto.response.CustomCoverage;
 import br.com.sennatech.wasddoissuances.controller.dto.response.PolicyDetailsDTO;
 import br.com.sennatech.wasddoissuances.domain.Validity;
-import br.com.sennatech.wasddoissuances.service.dto.CoverageDB;
-import br.com.sennatech.wasddoissuances.service.dto.InsuredAddressDB;
-import br.com.sennatech.wasddoissuances.service.dto.PolicyDB;
+import br.com.sennatech.wasddoissuances.service.dto.*;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,14 +17,17 @@ public class ConverterCoverageDBtoCustomCoverage {
         List<CustomCoverage> coverages = policyDB.getCoverages().stream()
                 .map(this::convertCoverageDBToCustomCoverage)
                 .collect(Collectors.toList());
+        InsuredAddressDB insuredAddress = getInsuredAddress(policyDB.getInsuredAddresses());
+        BigDecimal initialCoverageValue = policyDB.getTotalValue();
+
         return PolicyDetailsDTO.builder()
                 .number(policyDB.getNumber())
                 .documentNumber(policyDB.getHolderDocument())
-                .value(policyDB.getTotalValue())
+                .value(initialCoverageValue)
                 .paymentId(policyDB.getPaymentId())
                 .coverages(coverages)
+                .insuredAddresses(insuredAddress)
                 .validity(new Validity(policyDB.getValidityStart(), policyDB.getValidityEnd()))
-                .insuredAddresses((List<InsuredAddressDB>) policyDB.getInsuredAddress())
                 .build();
     }
 
@@ -34,26 +35,20 @@ public class ConverterCoverageDBtoCustomCoverage {
         CustomCoverage customCoverage = new CustomCoverage();
         customCoverage.setCode(Long.valueOf(coverageDB.getCoverageId()));
         customCoverage.setValue(coverageDB.getHiredValue());
-
+        customCoverage.setName(customCoverage.getName());
+        if (coverageDB.getCoverageCustomer() != null) {
+            customCoverage.setName(coverageDB.getCoverageCustomer().getName());
+        } else {
+            customCoverage.setName("Nome Não Disponível");
+        }
         return customCoverage;
     }
 
-    private InsuredAddressDTO convertInsuredAddressDBToDTO(InsuredAddressDB insuredAddressDB) {
-        InsuredAddressDTO insuredAddressDTO = new InsuredAddressDTO();
-        insuredAddressDTO.setNumber(insuredAddressDB.getNumber());
-        insuredAddressDTO.setDistrict(insuredAddressDB.getDistrict());
-        insuredAddressDTO.setCity(insuredAddressDB.getCity());
-        insuredAddressDTO.setState(insuredAddressDB.getState());
-        insuredAddressDTO.setCountry(insuredAddressDB.getCountry());
-        insuredAddressDTO.setZipcode(insuredAddressDB.getZipcode());
-        return insuredAddressDTO;
-    }
-    private List<InsuredAddressDTO> convertInsuredAddresses(List<InsuredAddressDB> insuredAddresses) {
-        return insuredAddresses.stream()
-                .map(this::convertInsuredAddressDBToDTO)
-                .collect(Collectors.toList());
-    }
-    private static InsuredAddressDB getInsuredAddress(InsuredAddressDTO insuredAddress, PolicyDB policy) {
+
+    private static InsuredAddressDB getInsuredAddress(InsuredAddressDB insuredAddress) {
+        if (insuredAddress == null) {
+            return null;
+        }
         return InsuredAddressDB
                 .builder()
                 .street(insuredAddress.getStreet())
@@ -63,7 +58,6 @@ public class ConverterCoverageDBtoCustomCoverage {
                 .state(insuredAddress.getState())
                 .country(insuredAddress.getCountry())
                 .zipcode(insuredAddress.getZipcode())
-                .policy(policy)
                 .build();
     }
 }

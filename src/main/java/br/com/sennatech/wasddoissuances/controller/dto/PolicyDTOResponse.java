@@ -1,6 +1,5 @@
 package br.com.sennatech.wasddoissuances.controller.dto;
 
-import br.com.sennatech.wasddoissuances.controller.dto.InsuredAddressDTO;
 import br.com.sennatech.wasddoissuances.controller.dto.response.CustomCoverage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +23,6 @@ import java.util.List;
         private String validityEnd;
         private CustomCoverage coverages;
         private List<InsuredAddressDTO> insuredAddressDTOS;
-
     }
 
 

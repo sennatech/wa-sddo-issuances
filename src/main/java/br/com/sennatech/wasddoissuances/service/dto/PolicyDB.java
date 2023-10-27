@@ -32,6 +32,6 @@ public class PolicyDB {
     private List<CoverageDB> coverages;
     @OneToOne(mappedBy = "policy", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private InsuredAddressDB insuredAddress;
+    private InsuredAddressDB insuredAddresses;
 
 }
