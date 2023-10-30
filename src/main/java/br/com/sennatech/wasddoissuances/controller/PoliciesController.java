@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.http.HttpStatus;
+
 @Data
 @RestController
 @RequestMapping("/policies")
@@ -26,10 +28,11 @@ public class PoliciesController {
     private final ConverterCoverageDBtoCustomCoverage converter;
 
     @GetMapping("/{holderDocument}")
-
-    public ResponseEntity<List<PolicyDTO>>
-    getPoliciesByHolderDocument(@PathVariable String holderDocument) {
+    public ResponseEntity<?> getPoliciesByHolderDocument(@PathVariable String holderDocument) {
         List<PolicyDB> policies = policyRepository.findByHolderDocument(holderDocument);
+        if (policies.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Por favor, passe o CPF correto");
+        }
         List<PolicyDTO> policyDTOs = policies.stream()
                 .map(policyDTOtoPolicyResponse::convertToDTO)
                 .collect(Collectors.toList());
@@ -37,10 +40,12 @@ public class PoliciesController {
         return ResponseEntity.ok(policyDTOs);
     }
 
-
-    @GetMapping("details/{number}")
-    public ResponseEntity<List<PolicyDetailsDTO>> getPoliciesByNumber(@PathVariable Long number) {
+    @GetMapping("/details/{number}")
+    public ResponseEntity<?> getPoliciesByNumber(@PathVariable Long number) {
         List<PolicyDB> policies = policyRepository.findByNumber(number);
+        if (policies.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Por favor, passe o Número correto.");
+        }
         List<PolicyDetailsDTO> policyDetailsDTOs = new ArrayList<>();
         for (PolicyDB policy  : policies) {
             PolicyDetailsDTO policyDetailsDTO = converter.convertToDetailsDTO(policy);
@@ -50,4 +55,3 @@ public class PoliciesController {
         return ResponseEntity.ok(policyDetailsDTOs);
     }
 }
-
