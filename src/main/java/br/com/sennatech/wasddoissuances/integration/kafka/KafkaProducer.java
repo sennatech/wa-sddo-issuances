@@ -22,7 +22,7 @@ public class KafkaProducer {
     public void send(Issuance issuance) {
         final var message = getKafkaMessage(issuance);
         this.kafkaTemplate.send(topicName, message);
-        log.info("Published the value [{}], with quotation code: to the kafka queue: [{}]",
+        log.info("Published the amount [{}], with quotation code: to the kafka queue: [{}]",
                 message.getData(),
                 topicName
         );

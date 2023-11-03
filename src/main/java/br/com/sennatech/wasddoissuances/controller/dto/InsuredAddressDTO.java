@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class InsuredAddressDTO {
         String street;
         String number;
-        String district;
+        String neighbourhood;
         String city;
         String state;
         String country;

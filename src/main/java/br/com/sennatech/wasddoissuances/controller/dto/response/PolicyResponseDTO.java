@@ -16,6 +16,6 @@ import java.util.List;
 public class PolicyResponseDTO {
     Long number;
     ValidityResponseDTO validity;
-    BigDecimal totalValue;
+    BigDecimal amount;
     List<CoverageDTO> coverages;
 }

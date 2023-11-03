@@ -31,7 +31,7 @@ public class GetIssuanceService {
                 .builder()
                 .number(policyDB.getNumber())
                 .validity(getValidity(policyDB.getValidityStart(), policyDB.getValidityEnd()))
-                .totalValue(request.getPolicyValue())
+                .amount(request.getAmount())
                 .coverages(getCoverages(request))
                 .build();
     }

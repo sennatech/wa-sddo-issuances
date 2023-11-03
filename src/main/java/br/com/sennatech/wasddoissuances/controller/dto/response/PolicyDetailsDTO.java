@@ -16,7 +16,7 @@ import java.util.List;
 public class PolicyDetailsDTO {
     private Long number ;
     private String documentNumber;
-    private BigDecimal value;
+    private BigDecimal amount;
     private String paymentId;
     private List<CustomCoverage> coverages;
     private Validity validity;

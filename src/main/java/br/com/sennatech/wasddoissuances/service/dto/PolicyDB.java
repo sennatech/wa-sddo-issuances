@@ -23,7 +23,7 @@ public class PolicyDB {
     private Long number;
     private String validityStart ;
     private String validityEnd;
-    private BigDecimal totalValue;
+    private BigDecimal amount;
     private String holderDocument;
     private String paymentId;
     @JsonIgnoreProperties("policy")

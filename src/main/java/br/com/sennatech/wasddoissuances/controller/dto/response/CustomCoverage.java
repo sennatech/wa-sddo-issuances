@@ -16,5 +16,5 @@ import java.math.BigDecimal;
 public class CustomCoverage {
     private Long code;
     private String name;
-    private BigDecimal value;
+    private BigDecimal amount;
 }

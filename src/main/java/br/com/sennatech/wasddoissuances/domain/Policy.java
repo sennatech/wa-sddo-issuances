@@ -14,6 +14,6 @@ import java.util.List;
 public class Policy {
     private Long number ;
     private Validity validity;
-    private BigDecimal totalValue;
+    private BigDecimal amount;
     private List<Coverage> coverages;
 }

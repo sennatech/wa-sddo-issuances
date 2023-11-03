@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class IssuanceRequestDTO {
         private List<Coverage> coverages;
-        private BigDecimal policyValue;
+        private BigDecimal amount;
         private String documentNumber;
         private String paymentId;
         private InsuredAddressDTO insuredAddress;

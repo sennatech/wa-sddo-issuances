@@ -37,7 +37,7 @@ public class SavePolicyService {
                 .builder()
                 .validityStart(LocalDate.now().toString())
                 .validityEnd(LocalDate.now().plusYears(1).toString())
-                .totalValue(request.getPolicyValue())
+                .amount(request.getAmount())
                 .holderDocument(request.getDocumentNumber())
                 .paymentId(request.getPaymentId())
                 .build();
@@ -55,7 +55,7 @@ public class SavePolicyService {
         return CoverageDB
                 .builder()
                 .coverageId(coverage.getCode())
-                .hiredValue(coverage.getValue())
+                .hiredAmount(coverage.getAmount())
                 .policy(policy)
                 .build();
     }
@@ -65,7 +65,7 @@ public class SavePolicyService {
                 .builder()
                 .street(insuredAddress.getStreet())
                 .number(insuredAddress.getNumber())
-                .district(insuredAddress.getDistrict())
+                .neighbourhood(insuredAddress.getNeighbourhood())
                 .city(insuredAddress.getCity())
                 .state(insuredAddress.getState())
                 .country(insuredAddress.getCountry())

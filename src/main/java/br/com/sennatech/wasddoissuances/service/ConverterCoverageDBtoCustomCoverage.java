@@ -18,12 +18,14 @@ public class ConverterCoverageDBtoCustomCoverage {
                 .map(this::convertCoverageDBToCustomCoverage)
                 .collect(Collectors.toList());
         InsuredAddressDB insuredAddress = getInsuredAddress(policyDB.getInsuredAddresses());
-        BigDecimal initialCoverageValue = policyDB.getTotalValue();
+
+        PaymentDB paymentDB = new PaymentDB();
+        BigDecimal amount = paymentDB.getAmount();
 
         return PolicyDetailsDTO.builder()
                 .number(policyDB.getNumber())
                 .documentNumber(policyDB.getHolderDocument())
-                .value(initialCoverageValue)
+                .amount(amount)
                 .paymentId(policyDB.getPaymentId())
                 .coverages(coverages)
                 .insuredAddresses(insuredAddress)
@@ -31,19 +33,21 @@ public class ConverterCoverageDBtoCustomCoverage {
                 .build();
     }
 
+
     private CustomCoverage convertCoverageDBToCustomCoverage(CoverageDB coverageDB) {
         CustomCoverage customCoverage = new CustomCoverage();
+        InitialCoverage initialCoverage = coverageDB.getCoverageCustomer();
+
         customCoverage.setCode(Long.valueOf(coverageDB.getCoverageId()));
-        customCoverage.setValue(coverageDB.getHiredValue());
-        customCoverage.setName(customCoverage.getName());
-        if (coverageDB.getCoverageCustomer() != null) {
-            customCoverage.setName(coverageDB.getCoverageCustomer().getName());
+        customCoverage.setAmount(coverageDB.getHiredAmount());
+        if (initialCoverage != null) {
+            customCoverage.setName(initialCoverage.getName());
         } else {
             customCoverage.setName("Nome Não Disponível");
         }
-        return customCoverage;
-    }
 
+        return customCoverage;
+}
 
     private static InsuredAddressDB getInsuredAddress(InsuredAddressDB insuredAddress) {
         if (insuredAddress == null) {
@@ -53,7 +57,7 @@ public class ConverterCoverageDBtoCustomCoverage {
                 .builder()
                 .street(insuredAddress.getStreet())
                 .number(insuredAddress.getNumber())
-                .district(insuredAddress.getDistrict())
+                .neighbourhood(insuredAddress.getNeighbourhood())
                 .city(insuredAddress.getCity())
                 .state(insuredAddress.getState())
                 .country(insuredAddress.getCountry())

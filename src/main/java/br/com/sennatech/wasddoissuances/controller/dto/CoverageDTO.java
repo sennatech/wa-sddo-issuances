@@ -17,7 +17,7 @@ public class CoverageDTO {
     String type;
     String name;
     String description;
-    BigDecimal value;
+    BigDecimal amount;
     BigDecimal sumInsured;
     boolean required;
 }

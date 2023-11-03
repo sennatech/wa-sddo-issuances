@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "coverage")
+@Table(name = "coverages")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,18 +21,18 @@ public class InitialCoverage {
     @Column(unique = true, updatable = false, nullable = false)
     private Long id;
 
-    @Column(unique = true, length = 50)
-    private String name;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @Column(length = 100, nullable = false)
     private String description;
 
     @Column(nullable = false)
-    private Double value;
+    private Double amount;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Type type;
+    @Column(unique = true, length = 50)
+    private String name;
 
     @Column(nullable = false)
     private Double sumInsured;

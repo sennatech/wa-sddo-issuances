@@ -7,10 +7,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "payment")
+@Table(name = "payments")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class PaymentDB {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +20,7 @@ public class PaymentDB {
     @Column(nullable = false, length = 50)
     private String transaction;
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal paymentValue;
+    private BigDecimal amount;
     @Column(nullable = false)
     private LocalDateTime dateTime = LocalDateTime.now();
 }

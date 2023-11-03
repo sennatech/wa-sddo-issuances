@@ -7,6 +7,6 @@ import java.math.BigDecimal;
 public class CoverageDTOresponse {
     private Long number;
     private String documentNumber;
-    private BigDecimal value;
+    private BigDecimal amount;
     private Validity validity;
 }

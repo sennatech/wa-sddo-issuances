@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Data
 @Builder
 @Entity
-@Table(name = "coverages")
+@Table(name = "Hired_coverages")
 @NoArgsConstructor
 @AllArgsConstructor
 public class CoverageDB {
@@ -24,7 +24,7 @@ public class CoverageDB {
     @JoinColumn(name = "policy_number")
     @JsonBackReference
     private PolicyDB policy;
-    private  BigDecimal hiredValue;
+    private  BigDecimal hiredAmount;
     @ManyToOne
     @JoinColumn(name = "coverage_id_", referencedColumnName = "id", insertable = false, updatable = false)
     private InitialCoverage coverageCustomer;

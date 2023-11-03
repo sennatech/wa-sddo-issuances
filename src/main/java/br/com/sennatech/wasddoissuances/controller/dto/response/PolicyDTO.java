@@ -15,6 +15,6 @@ public class PolicyDTO {
 
         private Long number;
         private String documentNumber;
-        private BigDecimal value;
+        private BigDecimal amount;
         private Validity validity;
 }

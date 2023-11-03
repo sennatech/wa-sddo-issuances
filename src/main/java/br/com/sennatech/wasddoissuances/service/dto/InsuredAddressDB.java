@@ -19,7 +19,7 @@ public class InsuredAddressDB {
     private Integer id;
     private String street;
     private String number;
-    private String district;
+    private String neighbourhood;
     private String city;
     private String state;
     private String country;

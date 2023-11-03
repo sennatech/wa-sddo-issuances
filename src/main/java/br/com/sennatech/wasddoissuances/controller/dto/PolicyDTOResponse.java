@@ -18,7 +18,7 @@ import java.util.List;
         private Long number;
         private String documentNumber;
         private String paymentId;
-        private BigDecimal value;
+        private BigDecimal amount;
         private String validityStart ;
         private String validityEnd;
         private CustomCoverage coverages;

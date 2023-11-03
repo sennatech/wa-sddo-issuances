@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class ConvertIssuanceToIssuanceResponseDTO {
                 .builder()
                 .number(policy.getNumber())
                 .validity(new ValidityResponseDTO(policy.getValidity().getStart(), policy.getValidity().getEnd()))
-                .totalValue(policy.getTotalValue())
+                .amount(getAmount(policy.getCoverages()))
                 .coverages(getcoverages(policy.getCoverages()))
                 .build();
     }
@@ -53,7 +54,7 @@ public class ConvertIssuanceToIssuanceResponseDTO {
                 .type(coverage.getType())
                 .name(coverage.getName())
                 .description(coverage.getDescription())
-                .value(coverage.getValue())
+                .amount(coverage.getAmount())
                 .sumInsured(coverage.getSumInsured())
                 .required(coverage.isRequired())
                 .build();
@@ -65,5 +66,15 @@ public class ConvertIssuanceToIssuanceResponseDTO {
 
     private InsuredAddressDTO getInsuredAddress(InsuredAddress insuredAddress) {
         return mapper.map(insuredAddress, InsuredAddressDTO.class);
+    }
+
+    private BigDecimal getAmount(List<Coverage> coverages) {
+        BigDecimal totalAmount = BigDecimal.ZERO;
+
+        for (Coverage coverage : coverages) {
+            totalAmount = totalAmount.add(coverage.getAmount());
+        }
+
+        return totalAmount;
     }
 }

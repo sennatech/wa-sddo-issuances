@@ -15,7 +15,7 @@ public class Coverage {
     private String type;
     private String name;
     private String description;
-    private BigDecimal value;
+    private BigDecimal amount;
     private BigDecimal sumInsured;
     private boolean required;
 }

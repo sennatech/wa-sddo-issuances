@@ -17,7 +17,7 @@ public class PolicyDTOtoPolicyResponse {
         return PolicyDTO.builder()
                 .number(policyDB.getNumber())
                 .documentNumber(policyDB.getHolderDocument())
-                .value(policyDB.getTotalValue())
+                .amount(policyDB.getAmount())
                 .validity(new Validity(policyDB.getValidityStart(), policyDB.getValidityEnd()))
                 .build();
     }
