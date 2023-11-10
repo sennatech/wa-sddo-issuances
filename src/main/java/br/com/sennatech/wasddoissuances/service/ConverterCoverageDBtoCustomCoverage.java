@@ -4,6 +4,8 @@ import br.com.sennatech.wasddoissuances.controller.dto.response.CustomCoverage;
 import br.com.sennatech.wasddoissuances.controller.dto.response.PolicyDetailsDTO;
 import br.com.sennatech.wasddoissuances.domain.Validity;
 import br.com.sennatech.wasddoissuances.service.dto.*;
+import br.com.sennatech.wasddoissuances.service.integration.GetNametIntegration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -12,6 +14,13 @@ import java.util.stream.Collectors;
 
 @Component
 public class ConverterCoverageDBtoCustomCoverage {
+
+    private final GetNametIntegration getNametIntegration;
+
+    @Autowired
+    public ConverterCoverageDBtoCustomCoverage(GetNametIntegration getNametIntegration) {
+        this.getNametIntegration = getNametIntegration;
+    }
 
     public PolicyDetailsDTO convertToDetailsDTO(PolicyDB policyDB) {
         List<CustomCoverage> coverages = policyDB.getCoverages().stream()
@@ -25,7 +34,7 @@ public class ConverterCoverageDBtoCustomCoverage {
         return PolicyDetailsDTO.builder()
                 .number(policyDB.getNumber())
                 .documentNumber(policyDB.getHolderDocument())
-                .amount(amount)
+                .amount(policyDB.getAmount())
                 .paymentId(policyDB.getPaymentId())
                 .coverages(coverages)
                 .insuredAddresses(insuredAddress)
@@ -35,19 +44,17 @@ public class ConverterCoverageDBtoCustomCoverage {
 
 
     private CustomCoverage convertCoverageDBToCustomCoverage(CoverageDB coverageDB) {
+        InitialCoverage initialCoverage = getNametIntegration.getName(Long.valueOf(coverageDB.getId()));
+
         CustomCoverage customCoverage = new CustomCoverage();
-        InitialCoverage initialCoverage = coverageDB.getCoverageCustomer();
+        return customCoverage
+                .builder()
+                .name(initialCoverage.getName())
+                .code(Long.valueOf(coverageDB.getId()))
+                .amount(coverageDB.getHiredAmount())
+                .build();
+    }
 
-        customCoverage.setCode(Long.valueOf(coverageDB.getCoverageId()));
-        customCoverage.setAmount(coverageDB.getHiredAmount());
-        if (initialCoverage != null) {
-            customCoverage.setName(initialCoverage.getName());
-        } else {
-            customCoverage.setName("Nome Não Disponível");
-        }
-
-        return customCoverage;
-}
 
     private static InsuredAddressDB getInsuredAddress(InsuredAddressDB insuredAddress) {
         if (insuredAddress == null) {
@@ -55,6 +62,7 @@ public class ConverterCoverageDBtoCustomCoverage {
         }
         return InsuredAddressDB
                 .builder()
+                .id(insuredAddress.getId())
                 .street(insuredAddress.getStreet())
                 .number(insuredAddress.getNumber())
                 .neighbourhood(insuredAddress.getNeighbourhood())

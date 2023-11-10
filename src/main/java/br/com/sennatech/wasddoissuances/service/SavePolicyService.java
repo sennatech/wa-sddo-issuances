@@ -6,11 +6,13 @@ import br.com.sennatech.wasddoissuances.domain.Coverage;
 import br.com.sennatech.wasddoissuances.repository.PolicyRepository;
 import br.com.sennatech.wasddoissuances.service.dto.CoverageDB;
 import br.com.sennatech.wasddoissuances.service.dto.InsuredAddressDB;
+import br.com.sennatech.wasddoissuances.service.dto.PaymentDB;
 import br.com.sennatech.wasddoissuances.service.dto.PolicyDB;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,26 +20,28 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class SavePolicyService {
-
+    private final GetPayment getPaymentService;
     private final PolicyRepository repository;
 
     @Transactional
     public PolicyDB execute(IssuanceRequestDTO request) {
-        final var policy = getPolicy(request);
+        final var payment = getPaymentService.execute(Long.valueOf(request.getPaymentId()));
+        final var policy = getPolicy(request, payment );
         final var coverages = getCoverages(request, policy);
         final var insuredAddress = getInsuredAddress(request.getInsuredAddress(), policy);
         policy.setCoverages(coverages);
         policy.setInsuredAddresses(insuredAddress);
 
+
         return repository.save(policy);
     }
 
-    private static PolicyDB getPolicy(IssuanceRequestDTO request) {
+    private static PolicyDB getPolicy(IssuanceRequestDTO request, PaymentDB payment) {
         return PolicyDB
                 .builder()
                 .validityStart(LocalDate.now().toString())
                 .validityEnd(LocalDate.now().plusYears(1).toString())
-                .amount(request.getAmount())
+                .amount((payment.getAmount()))
                 .holderDocument(request.getDocumentNumber())
                 .paymentId(request.getPaymentId())
                 .build();

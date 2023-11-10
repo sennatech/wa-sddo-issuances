@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-
 @Data
 @Builder
 @Entity
@@ -24,9 +23,8 @@ public class CoverageDB {
     @JoinColumn(name = "policy_number")
     @JsonBackReference
     private PolicyDB policy;
-    private  BigDecimal hiredAmount;
+    private BigDecimal hiredAmount;
     @ManyToOne
-    @JoinColumn(name = "coverage_id_", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "coverageId", referencedColumnName = "id", insertable = false, updatable = false)
     private InitialCoverage coverageCustomer;
-
 }

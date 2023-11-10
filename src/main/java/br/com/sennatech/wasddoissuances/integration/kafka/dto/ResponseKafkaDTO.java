@@ -14,6 +14,6 @@ public class ResponseKafkaDTO {
     String timestamp = LocalDateTime.now().toString();
     String operation = "EMISSAO" ;
     String domain = "SEGURO";
-    String origin = "Asseguraê";
+    String origin = "ASSEGURAÊ";
     KafkaData data;
 }
