@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseKafkaDTO {
-    String  timestamp = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(new Date());
+    String  timestamp = new SimpleDateFormat("yyyy-HH-dd HH:mm:ss").format(new Date());
     String operation = "EMISSAO" ;
     String domain = "SEGURO";
     String origin = "ASSEGURAÊ";
