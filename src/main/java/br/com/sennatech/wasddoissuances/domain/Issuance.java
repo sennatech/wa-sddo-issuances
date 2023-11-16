@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Issuance {
     private Policy policy;
     private Holder holder;
-    private String paymentId;
+    private Long paymentId;
+    private BigDecimal amount;
     private InsuredAddress insuredAddress;
 }

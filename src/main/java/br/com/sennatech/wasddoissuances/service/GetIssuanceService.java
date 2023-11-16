@@ -3,6 +3,7 @@ package br.com.sennatech.wasddoissuances.service;
 import br.com.sennatech.wasddoissuances.controller.dto.InsuredAddressDTO;
 import br.com.sennatech.wasddoissuances.controller.dto.request.IssuanceRequestDTO;
 import br.com.sennatech.wasddoissuances.domain.*;
+import br.com.sennatech.wasddoissuances.service.dto.PaymentDB;
 import br.com.sennatech.wasddoissuances.service.dto.PolicyDB;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -21,6 +22,8 @@ public class GetIssuanceService {
         return Issuance
                 .builder()
                 .policy(getPolicy(request, policyDB))
+                .paymentId(Long.valueOf(request.getPaymentId()))
+                .amount(policyDB.getAmount())
                 .holder(holder)
                 .insuredAddress(getInsuredAddress(request.getInsuredAddress()))
                 .build();
@@ -31,7 +34,6 @@ public class GetIssuanceService {
                 .builder()
                 .number(policyDB.getNumber())
                 .validity(getValidity(policyDB.getValidityStart(), policyDB.getValidityEnd()))
-                .amount(request.getAmount())
                 .coverages(getCoverages(request))
                 .build();
     }

@@ -20,8 +20,10 @@ public class IssuanceBusinessRulesService {
         final var policyDB = savePolicyService.execute(request);
         final var holder = getCustumerIntegration.execute(request.getDocumentNumber());
         final var issuance = getPolicy.execute(request, policyDB, holder);
+        final var issuanceResponseDTO = convertIssuanceToIssuanceResponseDTO.execute(issuance);
+
         kafkaProducer.send(issuance);
-        return convertIssuanceToIssuanceResponseDTO.execute(issuance);
+        return issuanceResponseDTO;
     }
 }
 
